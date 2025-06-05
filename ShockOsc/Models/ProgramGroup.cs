@@ -7,6 +7,10 @@ namespace OpenShock.ShockOSC.Models;
 
 public sealed class ProgramGroup
 {
+    /////////////////////////////////////////////////////
+    // Add property for if the stungun is toggled on?
+    // Looks like it may be nice to add it here.
+    /////////////////////////////////////////////////////
     public bool Paused { get; set; } = false;
     public DateTime LastActive { get; set; }
     public DateTime LastExecuted { get; set; }

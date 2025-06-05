@@ -161,6 +161,10 @@ public sealed class ShockOsc
             ShockOscParams.Clear();
             AllAvatarParams.Clear();
 
+            //////////////////////////////////////////////////////////////////////
+            // On avi change we'll add another parameter to search for, be sure to
+            // check here if something is going wrong with pulling the parameter data
+            //////////////////////////////////////////////////////////////////////
             foreach (var param in parameters.Keys)
             {
                 if (param.StartsWith("/avatar/parameters/"))
@@ -540,6 +544,11 @@ public sealed class ShockOsc
         return true;
     }
 
+    ////////////////////////////////////////////
+    // This is where the shocking happens,
+    // can add functionality here once I understand
+    // what's being called and how it's being called.
+    ////////////////////////////////////////////
     private async Task SendCommand(ProgramGroup programGroup, ushort duration, byte intensity, ControlType type,
         bool exclusive = false)
     {
@@ -616,6 +625,15 @@ public sealed class ShockOsc
 
         _openShockService.Control.LiveControl(group.ConfigGroup.Shockers, intensity, type);
     }
+
+    ///////////////////////////////////////
+    // Is logic for checking the class ProgramGroup
+    // which houses all our
+    //  LastConcurrentIntensity
+    //  ConcurrentIntensity
+    //  NextIntensity
+    // past, present, and future intensity values.
+    ///////////////////////////////////////
 
     private async Task CheckProgramGroup(ProgramGroup programGroup, Guid pos)
     {
